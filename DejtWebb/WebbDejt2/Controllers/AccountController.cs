@@ -50,6 +50,14 @@ namespace WebbDejt2.Controllers
             {
                 _userManager = value;
             }
+        } 
+        
+        //
+        // GET: /Account/Profile
+        public ActionResult Profile(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            return View();
         }
 
         //
