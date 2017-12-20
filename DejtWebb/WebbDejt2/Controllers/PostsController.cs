@@ -50,6 +50,12 @@ namespace WebbDejt2.Controllers
         {
             if (ModelState.IsValid)
             {
+                var Email = User.Identity.Name;
+
+                var user = db.Users.Single(x => x.UserName == Email); //Kolla vad Email ligger i databasen som
+
+                post.Author = user;
+
                 db.Posts.Add(post);
                 db.SaveChanges();
                 return RedirectToAction("Index");
