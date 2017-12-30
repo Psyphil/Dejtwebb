@@ -11,7 +11,7 @@ using WebbDejt2.Models;
 namespace WebbDejt2.Controllers
 {
     [Authorize]
-    public class ManageController : Controller
+    public class ManageController : BaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;

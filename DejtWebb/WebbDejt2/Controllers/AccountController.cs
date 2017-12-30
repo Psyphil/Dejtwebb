@@ -13,7 +13,7 @@ using WebbDejt2.Models;
 namespace WebbDejt2.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;

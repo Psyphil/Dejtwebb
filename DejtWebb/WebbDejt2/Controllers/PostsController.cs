@@ -10,14 +10,20 @@ using WebbDejt2.Models;
 
 namespace WebbDejt2.Controllers
 {
-    public class PostsController : Controller
+    public class PostIndexViewModel
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        public string id { get; set; }
+        public ICollection<Post> Posts { get; set; }
+    }
+    public class PostsController : BaseController
+    {
+
 
         // GET: Posts
-        public ActionResult Index()
+        public ActionResult Index(string toid)
         {
-            return View(db.Posts.ToList());
+            var posts = db.Posts.Where(x => x.Receiver.Id == toid).ToList();
+            return View(new PostIndexViewModel { id = toid, Posts = posts });
         }
 
         // GET: Posts/Details/5
@@ -36,7 +42,7 @@ namespace WebbDejt2.Controllers
         }
 
         // GET: Posts/Create
-        public ActionResult Create()
+        public ActionResult Create(String toId)
         {
             return View();
         }
@@ -46,22 +52,24 @@ namespace WebbDejt2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Text")] Post post)
+        public ActionResult Create([Bind(Include = "Text")] Post post, String toID)
         {
             if (ModelState.IsValid)
             {
                 var Email = User.Identity.Name;
-
                 var user = db.Users.Single(x => x.UserName == Email); //Kolla vad Email ligger i databasen som
+                
+                var toUser = db.Users.Single(x => x.Id == toID);
 
                 post.Author = user;
-
+                post.Receiver = toUser;
                 db.Posts.Add(post);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(post);
+            return RedirectToAction("Index","Posts", new { toid = toID}); // kommer till en blank index 
+            //return View(post);   funkar men komer fel
         }
 
         // GET: Posts/Edit/5

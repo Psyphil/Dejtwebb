@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebbDejt2.Models.Post>
+﻿@model WebbDejt2.Controllers.PostIndexViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -7,20 +7,20 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", "Posts", new { toID=Model.id}, new { })
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Author)
+            @Html.DisplayNameFor(model => model.Posts.Single().Author.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Text)
+            @Html.DisplayNameFor(model => model.Posts.Single().Text)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Posts) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Author.Name)
