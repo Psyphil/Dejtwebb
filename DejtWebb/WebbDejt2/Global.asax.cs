@@ -14,7 +14,7 @@ namespace WebbDejt2
     {
         protected void Application_Start()
         {
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
+            Database.SetInitializer(new MyInitializer());/*(new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());*/
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

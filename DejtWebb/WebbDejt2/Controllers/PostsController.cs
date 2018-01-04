@@ -65,10 +65,10 @@ namespace WebbDejt2.Controllers
                 post.Receiver = toUser;
                 db.Posts.Add(post);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Posts", new { toid = toID});
             }
-
-            return RedirectToAction("Index","Posts", new { toid = toID}); // kommer till en blank index 
+            return View();//test
+             // kommer till en blank index 
             //return View(post);   funkar men komer fel
         }
 
