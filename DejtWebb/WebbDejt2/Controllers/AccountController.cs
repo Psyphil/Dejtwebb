@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -64,21 +65,21 @@ namespace WebbDejt2.Controllers
 
         public ActionResult Edit(string id)
         {
-            var user = db.Users.Single(x => x.Id == id);
+            var user = db.Users.Find(id);
             return View(user);
         }
 
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "Id,Text")] ApplicationUser user)
+        //public ActionResult Edit([Bind(Include = "Name, Age, Description, Email")] ApplicationUser user)
         //{
         //    if (ModelState.IsValid)
         //    {
-        //        db.Entry(post).State = EntityState.Modified;
+        //        db.Entry(user).State = EntityState.Modified;
         //        db.SaveChanges();
-        //        return RedirectToAction("Index");
+        //        return RedirectToAction("Profile");
         //    }
-        //    return View(post);
+        //    return View(user);
         //}
 
         //
