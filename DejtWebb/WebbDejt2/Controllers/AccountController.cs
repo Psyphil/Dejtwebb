@@ -54,10 +54,12 @@ namespace WebbDejt2.Controllers
         
         //
         // GET: /Account/Profile
-        public ActionResult Profile(string returnUrl)
+        public ActionResult Profile()/*string returnUrl*/
         {
-            ViewBag.ReturnUrl = returnUrl;
-            return View();
+            //ViewBag.ReturnUrl = returnUrl;
+            var username = User.Identity.Name;
+            var user = db.Users.Single(x => x.UserName == username); 
+            return View(user);
         }
 
         //
