@@ -58,7 +58,7 @@ namespace WebbDejt2.Controllers
             {
                 var Email = User.Identity.Name;
                 var user = db.Users.Single(x => x.UserName == Email); //Kolla vad Email ligger i databasen som
-                
+
                 var toUser = db.Users.Single(x => x.Id == toID);
 
                 post.Author = user;

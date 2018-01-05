@@ -55,7 +55,7 @@
 
     </dl>
 </div>
-<p>
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@ @*Orsakar ERROR*@
-    @Html.ActionLink("Back to List", "Index")
-</p>
+@if (Model.Email == User.Identity.Name)
+{
+    <p> @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) </p>
+}
