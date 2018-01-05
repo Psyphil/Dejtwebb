@@ -54,13 +54,32 @@ namespace WebbDejt2.Controllers
         
         //
         // GET: /Account/Profile
-        public ActionResult Profile()/*string returnUrl*/
+        public ActionResult Profile( string username)/*string returnUrl*/
         {
             //ViewBag.ReturnUrl = returnUrl;
-            var username = User.Identity.Name;
+           
             var user = db.Users.Single(x => x.UserName == username); 
             return View(user);
         }
+
+        public ActionResult Edit(string id)
+        {
+            var user = db.Users.Single(x => x.Id == id);
+            return View(user);
+        }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit([Bind(Include = "Id,Text")] ApplicationUser user)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(post).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(post);
+        //}
 
         //
         // GET: /Account/Login

@@ -32,7 +32,10 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.ActionLink("Posts", "Index", "Posts", new { toid = item.Id} , new { })
+            @Html.ActionLink("Posts", "Index", "Posts", new { toid = item.Id }, new { })
+        </td>
+        <td>
+            @Html.ActionLink("Profile", "Profile", "Account", new { username = item.Email }, new { })
         </td>
     </tr>
 }

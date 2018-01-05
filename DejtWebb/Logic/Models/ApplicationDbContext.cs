@@ -25,6 +25,8 @@ namespace WebbDejt2.Models
         }
         public DbSet<Post> Posts { get; set; }
 
+        
+
         //public System.Data.Entity.DbSet<WebbDejt2.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
     public class MyInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
