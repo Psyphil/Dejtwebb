@@ -34,6 +34,8 @@ namespace WebbDejt2.Models
             var store = new UserStore<ApplicationUser>(context);
             var userManager = new ApplicationUserManager(store);
 
+            string[] sampleNames = new string[] { "Johan Gustafsson", "Anton Svensson", "Filip Johansson", "Erik Gunnarson", "Elin Andersson", "Anna Jonsson", "Sofia Niklasson", "Siv Nilsson", "Nils Jöns", "Isabelle Soldat" };
+
             for (int i = 0; i < 10; i++)
             {
                 var ifHidden = false;
@@ -45,7 +47,7 @@ namespace WebbDejt2.Models
                 {
                     ifHidden = false;
                 }
-                var user = new ApplicationUser { Name = $"User{i}", Age = i, Description = "testanvändare" , UserName = $"e{i}@e.e", Email = $"e{i}@e.e", Hidden= ifHidden };
+                var user = new ApplicationUser { Name = sampleNames[i], Age = (i+10)*2, Description = "testanvändare" , UserName = $"e{i}@e.e", Email = $"e{i}@e.e", Hidden= ifHidden };
                 
 
                 userManager.CreateAsync(user, "Admin1!").Wait();
