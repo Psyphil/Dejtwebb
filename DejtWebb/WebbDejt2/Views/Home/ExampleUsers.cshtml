@@ -1,0 +1,20 @@
+﻿@model IEnumerable<WebbDejt2.Models.ApplicationUser>
+
+<ul class="media-list">
+
+    @foreach (var item in Model)
+    {
+        <a href="@Url.Action("Profile", "Account", new { username = item.Email })">
+            <li class="media well well-sm">
+                <div class="media-left">
+                    <img class="media-object" src="..." alt="...">
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">@Html.DisplayFor(modelItem => item.Name) - @Html.DisplayFor(modelItem => item.Age)</h4>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </div>
+            </li>
+        </a>
+    }
+
+</ul>
