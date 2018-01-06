@@ -4,17 +4,16 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
+<div class="jumbotron col-md-6">
     <h1>Webbdejt</h1>
-    <p class="lead">Date me!</p>
+    <p class="lead">Use the web to browse singles, view profiles and see photos on our dating website!</p>
 </div>
 
 <div class="row">
-    <div class="col-md-12">
-        <h2>Random users</h2>
+    <div class="col-md-5 col-md-offset-1">
+        <h2>Singles</h2>
         <p>
-
+            @Html.Action("_ExampleUsers")
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
     </div>
 </div>

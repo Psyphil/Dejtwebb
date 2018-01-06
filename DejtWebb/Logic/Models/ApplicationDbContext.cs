@@ -25,8 +25,6 @@ namespace WebbDejt2.Models
         }
         public DbSet<Post> Posts { get; set; }
 
-        
-
         //public System.Data.Entity.DbSet<WebbDejt2.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
     public class MyInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
@@ -36,9 +34,22 @@ namespace WebbDejt2.Models
             var store = new UserStore<ApplicationUser>(context);
             var userManager = new ApplicationUserManager(store);
 
+            string[] sampleNames = new string[] { "Johan Gustafsson", "Anton Svensson", "Filip Johansson", "Erik Gunnarson", "Elin Andersson", "Anna Jonsson", "Sofia Niklasson", "Siv Nilsson", "Nils Jöns", "Isabelle Soldat" };
+
             for (int i = 0; i < 10; i++)
             {
-                var user = new ApplicationUser { Name = $"User{i}", Age = i, Description = "test användare" , UserName = $"e{i}@e.e", Email = $"e{i}@e.e" };
+                var ifHidden = false;
+                if (i == 1)
+                {
+                    ifHidden = true;
+                }
+                else
+                {
+                    ifHidden = false;
+                }
+                var user = new ApplicationUser { Name = sampleNames[i], Age = (i+10)*2, Description = "testanvändare" , UserName = $"e{i}@e.e", Email = $"e{i}@e.e", Hidden= ifHidden };
+                
+
                 userManager.CreateAsync(user, "Admin1!").Wait();
             }
             

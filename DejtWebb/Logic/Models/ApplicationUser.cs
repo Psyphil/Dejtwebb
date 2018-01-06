@@ -12,6 +12,7 @@ namespace WebbDejt2.Models
         public string Name { get; set; }
         public int Age { get; set; }
         public string Description { get; set; }
+        public bool Hidden { get; set; }
 
         
 
