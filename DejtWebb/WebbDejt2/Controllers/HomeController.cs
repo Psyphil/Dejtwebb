@@ -28,7 +28,7 @@ namespace WebbDejt2.Controllers
             return View();
         }
 
-        public ActionResult ExampleUsers()
+        public ActionResult _ExampleUsers()
         {
             var users = db.Users.ToList();
             List<ApplicationUser> exampleUsers = new List<ApplicationUser>();

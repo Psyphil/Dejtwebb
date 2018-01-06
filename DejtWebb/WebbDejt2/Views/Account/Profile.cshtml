@@ -4,15 +4,13 @@
     ViewBag.Title = "Profile";
 }
 
-@*FUNKAR INTE*@
 
-
-<h2>Profile</h2>
+<h4>Profile Page</h4>
 
 <div>
-    <h4>ApplicationUser</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal col-md-6">
+        <h2>@Html.DisplayFor(model => model.Name)</h2>
         <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
@@ -37,25 +35,33 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+        @*<dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.UserName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.UserName)
+            </dd>*@
 
+        @if (Model.Email == User.Identity.Name)
+        {
+            <p> @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) </p>
+        }
     </dl>
 </div>
-@if (Model.Email == User.Identity.Name)
-{
-    <p> @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) </p>
-}
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Posts</h2>
+            <p>
+                @Html.Action("Index","Posts", new { toid = Model.Id })
+            </p>
+        </div>
+    </div>
