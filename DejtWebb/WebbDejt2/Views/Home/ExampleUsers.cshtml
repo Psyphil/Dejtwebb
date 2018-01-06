@@ -4,7 +4,16 @@
 
     @foreach (var item in Model)
     {
-        <a href="@Url.Action("Profile", "Account", new { username = item.Email })">
+        <a href="
+            @if (Request.IsAuthenticated)
+            {
+                @Url.Action("Profile", "Account", new { username = item.Email })
+            }
+            else
+            {
+                @Url.Action("Login", "Account")
+            }
+        ">
             <li class="media well well-sm">
                 <div class="media-left">
                     <img class="media-object" src="..." alt="...">
