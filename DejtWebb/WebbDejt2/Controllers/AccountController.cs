@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebbDejt2.Models;
+using System.Data.Entity.Validation;
 
 namespace WebbDejt2.Controllers
 {
@@ -55,10 +56,8 @@ namespace WebbDejt2.Controllers
         
         //
         // GET: /Account/Profile
-        public ActionResult Profile( string username)/*string returnUrl*/
+        public ActionResult Profile( string username)
         {
-            //ViewBag.ReturnUrl = returnUrl;
-           
             var user = db.Users.Single(x => x.UserName == username); 
             return View(user);
         }
@@ -69,18 +68,37 @@ namespace WebbDejt2.Controllers
             return View(user);
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "Name, Age, Description, Email")] ApplicationUser user)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(user).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Profile");
-        //    }
-        //    return View(user);
-        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Name, Age, Description, Email")] ApplicationUser user)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    db.Entry(user).State = EntityState.Modified;
+                    db.SaveChanges();
+                }catch(DbEntityValidationException ex)
+                {
+                    // Retrieve the error messages as a list of strings.
+                    var errorMessages = ex.EntityValidationErrors
+                            .SelectMany(x => x.ValidationErrors)
+                            .Select(x => x.ErrorMessage);
+
+                    // Join the list to a single string.
+                    var fullErrorMessage = string.Join("; ", errorMessages);
+
+                    // Combine the original exception message with the new one.
+                    var exceptionMessage = string.Concat(ex.Message, " The validation errors are: ", fullErrorMessage);
+                    Console.WriteLine(exceptionMessage);
+                    Console.WriteLine(ex.EntityValidationErrors);
+                    throw ;
+                }
+                
+                return RedirectToAction("Profile", user.Email);
+            }
+            return View(user);
+        }
 
         //
         // GET: /Account/Login
