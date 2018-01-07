@@ -76,19 +76,29 @@ namespace WebbDejt2.Controllers
         {
             if (ModelState.IsValid)
             {
+                ApplicationUser editUser = (ApplicationUser)UserManager.FindById(User.Identity.GetUserId());
                 if (newImg != null && newImg.ContentLength > 0)
                 {
-                    user.ImgName = newImg.FileName;
-                    user.ImgType = newImg.ContentType;
+                    editUser.ImgName = newImg.FileName;
+                    editUser.ImgType = newImg.ContentType;
 
                     using (var reader = new BinaryReader(newImg.InputStream))
                     {
-                        user.ImgFile = reader.ReadBytes(newImg.ContentLength);
+                        editUser.ImgFile = reader.ReadBytes(newImg.ContentLength);
                     }
                 }
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Profile");
+                //db.Entry(user).State = EntityState.Modified;
+                //db.SaveChanges();
+
+
+                editUser.Email = user.Email;
+                editUser.Name = user.Name;
+                editUser.Age = user.Age;
+                editUser.Description = user.Description;
+                editUser.Hidden = user.Hidden;
+
+                UserManager.Update(editUser);
+                return RedirectToAction("Profile", new { username = User.Identity.Name });
             }
             return View(user);
         }
