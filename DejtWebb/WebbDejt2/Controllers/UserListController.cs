@@ -32,15 +32,5 @@ namespace WebbDejt2.Controllers
                 return View(usersVisible);
         }
 
-        public ActionResult StartIndex()
-        {
-            var users = db.Users.ToList();
-            List<ApplicationUser> exampelUsers = new List<ApplicationUser>();
-            for ( int i = 0; i < 6; i++)
-            {
-                exampelUsers.Add(users[i]);
-            }
-            return View(exampelUsers);
-        }
     }
 }

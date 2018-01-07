@@ -23,7 +23,7 @@ namespace WebbDejt2.Controllers
         public ActionResult Index(string toid)
         {
             var posts = db.Posts.Where(x => x.Receiver.Id == toid).ToList();
-            return View(new PostIndexViewModel { id = toid, Posts = posts });
+            return PartialView(new PostIndexViewModel { id = toid, Posts = posts });
         }
 
         // GET: Posts/Details/5
@@ -60,12 +60,13 @@ namespace WebbDejt2.Controllers
                 var user = db.Users.Single(x => x.UserName == Email); //Kolla vad Email ligger i databasen som
 
                 var toUser = db.Users.Single(x => x.Id == toID);
+                var returnTo = db.Users.Find(toID);
 
                 post.Author = user;
                 post.Receiver = toUser;
                 db.Posts.Add(post);
                 db.SaveChanges();
-                return RedirectToAction("Index","Posts", new { toid = toID});
+                return RedirectToAction("Profile", "Account", new { username = returnTo.Email });
             }
             return View();//test
              // kommer till en blank index 
