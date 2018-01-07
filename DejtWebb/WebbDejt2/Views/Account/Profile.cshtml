@@ -50,10 +50,13 @@
             <dd>
                 @Html.DisplayFor(model => model.UserName)
             </dd>*@
-
+        <hr />
         @if (Model.Email == User.Identity.Name)
         {
-            <p> @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) </p>
+            <p class="well well-sm"> 
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+                @Html.ActionLink("Change Pasword", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </p>
         }
     </dl>
 </div>
