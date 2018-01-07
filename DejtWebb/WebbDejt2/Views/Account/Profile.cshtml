@@ -36,28 +36,34 @@
         </dd>
 
         @*<dt>
-                @Html.DisplayNameFor(model => model.Email)
-            </dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Email)
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.UserName)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.UserName)
-            </dd>*@
-        <hr />
-        @if (Model.Email == User.Identity.Name)
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>*@
+        <dt>
+            Image
+        </dt>
+        <dd>
+            <img class="media-object" src="@Url.Action("Image", "Account", new { id = Model.Id})" alt="...">
+        </dd>
+            <hr />
+            @if (Model.Email == User.Identity.Name)
         {
-            <p class="well well-sm"> 
+            <p class="well well-sm">
                 @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
                 @Html.ActionLink("Change Pasword", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
             </p>
-        }
+    }
     </dl>
 </div>
     <div class="row">

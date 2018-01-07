@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Claims;
@@ -18,19 +19,22 @@ namespace WebbDejt2.Models
         public string ImgType { get; set; }
         public byte[] ImgFile { get; set; }
 
-        //public ApplicationUser()
-        //{
-        //    string path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)+"\\profilepic.jpg";
-        //    var DefultImg = File.OpenRead(path);
-        //    ImgName = "Defult";
-        //    ImgType = "JPG";
+        public ApplicationUser()
+        {
+            //string path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\profilepic.jpg";
+            string fileName = "profilepic.jpg";
+            string pathDirectory = System.AppContext.BaseDirectory;
+            string path = Path.Combine(pathDirectory, @"pictures\", fileName);
+            var DefaultImg = File.OpenRead(path);
+            ImgName = "Default";
+            ImgType = "JPG";
 
-        //    using (var reader = new BinaryReader(DefultImg))
-        //        {
-        //            ImgFile = reader.ReadBytes(int.Parse(DefultImg.Length.ToString()));
-        //        }
-            
-        //}
+            using (var reader = new BinaryReader(DefaultImg))
+            {
+                ImgFile = reader.ReadBytes(int.Parse(DefaultImg.Length.ToString()));
+            }
+
+        }
 
 
 

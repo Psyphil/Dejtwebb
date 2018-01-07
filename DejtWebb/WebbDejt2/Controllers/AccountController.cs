@@ -104,6 +104,19 @@ namespace WebbDejt2.Controllers
         }
 
         //
+        // GET: Image
+        public ActionResult Image(string id)
+        {
+            var user = db.Users.Find(id);
+            if (user.ImgFile == null)
+            {
+                return null;
+            }
+            return File(user.ImgFile, user.ImgType);
+
+        }
+
+        //
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
