@@ -22,6 +22,16 @@ namespace WebbDejt2.Models
             modelBuilder.Entity<ApplicationUser>().HasMany(x => x.Posts).WithRequired(x => x.Receiver);
 
             base.OnModelCreating(modelBuilder);
+
+            //modelBuilder.Entity<Friend>()
+            //    .HasRequired(a => a.Sender)
+            //    .WithMany(b => b.FriendRequestsSent)
+            //    .HasForeignKey(c => c.senderId);
+
+            //modelBuilder.Entity<Friend>()
+            //    .HasRequired(a => a.Receiver)
+            //    .WithMany(b => b.FriendRequestsReceived)
+            //    .HasForeignKey(c => c.receiverId);
         }
         public DbSet<Post> Posts { get; set; }
 

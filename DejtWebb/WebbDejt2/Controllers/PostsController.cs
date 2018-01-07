@@ -57,7 +57,7 @@ namespace WebbDejt2.Controllers
             if (ModelState.IsValid)
             {
                 var Email = User.Identity.Name;
-                var user = db.Users.Single(x => x.UserName == Email); //Kolla vad Email ligger i databasen som
+                var user = db.Users.Single(x => x.UserName == Email);
 
                 var toUser = db.Users.Single(x => x.Id == toID);
                 var returnTo = db.Users.Find(toID);
