@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebbDejt2.Models;
+using System.IO;
 
 namespace WebbDejt2.Controllers
 {
@@ -71,10 +72,20 @@ namespace WebbDejt2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Name, Age, Description, Email, Hidden")] ApplicationUser user)
+        public ActionResult Edit([Bind(Include = "Name, Age, Description, Email, Hidden")] ApplicationUser user, HttpPostedFileBase newImg)
         {
             if (ModelState.IsValid)
             {
+                if (newImg != null && newImg.ContentLength > 0)
+                {
+                    user.ImgName = newImg.FileName;
+                    user.ImgType = newImg.ContentType;
+
+                    using (var reader = new BinaryReader(newImg.InputStream))
+                    {
+                        user.ImgFile = reader.ReadBytes(newImg.ContentLength);
+                    }
+                }
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Profile");

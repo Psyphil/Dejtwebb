@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
+using System.IO;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -13,8 +14,25 @@ namespace WebbDejt2.Models
         public int Age { get; set; }
         public string Description { get; set; }
         public bool Hidden { get; set; }
+        public string ImgName { get; set; }
+        public string ImgType { get; set; }
+        public byte[] ImgFile { get; set; }
 
-        
+        //public ApplicationUser()
+        //{
+        //    string path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)+"\\profilepic.jpg";
+        //    var DefultImg = File.OpenRead(path);
+        //    ImgName = "Defult";
+        //    ImgType = "JPG";
+
+        //    using (var reader = new BinaryReader(DefultImg))
+        //        {
+        //            ImgFile = reader.ReadBytes(int.Parse(DefultImg.Length.ToString()));
+        //        }
+            
+        //}
+
+
 
         public virtual ICollection<Post> Posts { get; set; }
 
