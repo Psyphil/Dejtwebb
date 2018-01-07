@@ -9,7 +9,8 @@ namespace WebbDejt2.Controllers
 {
     public class UserListController : BaseController
     {
-        //the first parameter is the option that we choose and the second parameter will use the textbox value  
+        //the first parameter is the option that we choose and the second parameter will use the textbox value 
+        [Authorize]
         public ActionResult Index(string search)
         {
 

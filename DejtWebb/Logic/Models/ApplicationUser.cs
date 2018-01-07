@@ -14,6 +14,7 @@ namespace WebbDejt2.Models
     public class ApplicationUser : IdentityUser
     {
         [Required]
+        //[RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$")]
         [StringLength(25, MinimumLength = 3)]
         public string Name { get; set; }
 
@@ -21,8 +22,9 @@ namespace WebbDejt2.Models
         [Range(16, 150)]
         public int Age { get; set; }
 
-        [StringLength(150)]
+        [StringLength(150, MinimumLength = 3)]
         public string Description { get; set; }
+
         public bool Hidden { get; set; }
         public string ImgName { get; set; }
         public string ImgType { get; set; }

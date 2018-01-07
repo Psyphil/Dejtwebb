@@ -1,17 +1,17 @@
 ﻿@model IEnumerable<WebbDejt2.Models.ApplicationUser>
 
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = @AppResources.AppTitle;
 }
 
 <div class="jumbotron col-md-6">
-    <h1>Webbdejt</h1>
+    <h1>@AppResources.AppTitle</h1>
     <p class="lead">Use the web to browse singles, view profiles and see photos on our dating website!</p>
 </div>
 
 <div class="row">
     <div class="col-md-5 col-md-offset-1">
-        <h2>Singles</h2>
+        <h2>@AppResources.Singles</h2>
         <p>
             @Html.Action("_ExampleUsers")
         </p>

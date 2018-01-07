@@ -52,10 +52,11 @@ namespace WebbDejt2.Controllers
             {
                 _userManager = value;
             }
-        } 
-        
+        }
+
         //
         // GET: /Account/Profile
+        [Authorize]
         public ActionResult Profile( string username)/*string returnUrl*/
         {
             //ViewBag.ReturnUrl = returnUrl;
@@ -64,6 +65,7 @@ namespace WebbDejt2.Controllers
             return View(user);
         }
 
+        [Authorize]
         public ActionResult Edit(string id)
         {
             var user = db.Users.Find(id);
@@ -105,6 +107,7 @@ namespace WebbDejt2.Controllers
 
         //
         // GET: Image
+        [AllowAnonymous]
         public ActionResult Image(string id)
         {
             var user = db.Users.Find(id);
@@ -118,6 +121,7 @@ namespace WebbDejt2.Controllers
 
         //
         // SEND: FriendRequest
+        [Authorize]
         public ActionResult SendFriendRequest(string toId)
         {
             var Receiver = db.Users.Find(toId);

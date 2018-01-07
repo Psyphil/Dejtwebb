@@ -60,7 +60,7 @@ namespace WebbDejt2.Models
                 var user = new ApplicationUser { Name = sampleNames[i], Age = (i+10)*2, Description = "testanvändare" , UserName = $"e{i}@e.e", Email = $"e{i}@e.e", Hidden= ifHidden };
                 
 
-                userManager.CreateAsync(user, "Admin1!").Wait();
+                userManager.CreateAsync(user, "Admin123!").Wait();
             }
             
 
