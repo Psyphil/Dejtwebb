@@ -61,7 +61,37 @@
         <div class="col-md-6">
             <h2>Posts</h2>
             <p>
+                <input type="text" id="PostTextField"/>
+                <button onclick="createPost('../api/Posts')">Create new post</button>
                 @Html.Action("Index","Posts", new { toid = Model.Id })
+                
             </p>
         </div>
     </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+    function createPost(api) {
+        var post = {
+            Text: $("#PostTextField").val(),
+            Toid: "@Model.Id"
+            };
+
+
+            $.ajax({
+                url: api,
+                type: 'post',
+                data: post,
+                success: function (result) {
+                    console.log(result);
+                },
+                error: function (errorMsg) {
+                    console.log("ErrorMessage: " + errorMsg);
+                }
+            });
+        }
+    </script>
+
+}

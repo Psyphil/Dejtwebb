@@ -10,6 +10,12 @@ using WebbDejt2.Models;
 
 namespace WebbDejt2.Controllers
 {
+
+    public class PostCreateViewModel
+    {
+        public string Toid { get; set; }
+        public string Text { get; set; }
+    }
     public class PostIndexViewModel
     {
         public string id { get; set; }

@@ -11,6 +11,7 @@ using System.Web.Http.Description;
 using WebbDejt2.Models;
 
 namespace WebbDejt2.Controllers.Api
+    
 {
     public class PostsController : ApiController
     {
@@ -72,17 +73,26 @@ namespace WebbDejt2.Controllers.Api
 
         // POST: api/Posts
         [ResponseType(typeof(Post))]
-        public IHttpActionResult PostPost(Post post)
+        public IHttpActionResult PostPost(PostCreateViewModel post)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            
+            var Email = User.Identity.Name;
+            var user = db.Users.Single(x => x.UserName == Email);
 
-            db.Posts.Add(post);
+            var toUser = db.Users.Single(x => x.Id == post.Toid);
+            var returnTo = db.Users.Find(toUser.Id);
+            Post p = new Post();
+            p.Author = user;
+            p.Receiver = toUser;
+            p.Text = post.Text;
+            db.Posts.Add(p);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = post.Id }, post);
+            return CreatedAtRoute("DefaultApi", new { id = p.Id }, post);
         }
 
         // DELETE: api/Posts/5
