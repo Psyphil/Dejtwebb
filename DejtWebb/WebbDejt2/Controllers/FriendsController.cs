@@ -81,6 +81,26 @@ namespace WebbDejt2.Controllers
             return Content(FriendRequests.ToString());
         }
 
+        public ActionResult CheckIfFriend( string profileId )
+        {
+            var Email = User.Identity.Name;
+            var user = db.Users.Single(x => x.UserName == Email);
+
+            var allFriendList = db.Friends.ToList();
+
+            string friends = "False";
+
+            foreach (Friend f in allFriendList)
+            {
+                if ((f.Receiver.Id == user.Id && f.Sender.Id == profileId) || (f.Receiver.Id == profileId && f.Sender.Id == user.Id))
+                {
+                    friends = "True";
+                }
+            }
+
+            return Content(friends);
+        }
+
         // GET: Friends/Details/5
         public ActionResult Details(string id)
         {
