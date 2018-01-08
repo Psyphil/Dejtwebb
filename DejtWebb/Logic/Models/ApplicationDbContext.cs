@@ -17,27 +17,18 @@ namespace WebbDejt2.Models
             return new ApplicationDbContext();
         }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)// hur man gör 1 -> M enligt sista föreläsningen
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ApplicationUser>().HasMany(x => x.Posts).WithRequired(x => x.Receiver);
 
             base.OnModelCreating(modelBuilder);
-
-            //modelBuilder.Entity<Friend>()
-            //    .HasRequired(a => a.Sender)
-            //    .WithMany(b => b.FriendRequestsSent)
-            //    .HasForeignKey(c => c.senderId);
-
-            //modelBuilder.Entity<Friend>()
-            //    .HasRequired(a => a.Receiver)
-            //    .WithMany(b => b.FriendRequestsReceived)
-            //    .HasForeignKey(c => c.receiverId);
+            
         }
         public DbSet<Post> Posts { get; set; }
 
         public DbSet<WebbDejt2.Models.Friend> Friends { get; set; }
 
-        //public System.Data.Entity.DbSet<WebbDejt2.Models.ApplicationUser> ApplicationUsers { get; set; }
+        
     }
     public class MyInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
     {
@@ -65,9 +56,6 @@ namespace WebbDejt2.Models
                 userManager.CreateAsync(user, "Admin123!").Wait();
             }
             
-
-
-
             base.Seed(context);
         }
     }

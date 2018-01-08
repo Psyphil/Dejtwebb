@@ -33,7 +33,6 @@ namespace WebbDejt2.Models
 
         public ApplicationUser()
         {
-            //string path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\profilepic.jpg";
             string fileName = "profilepic.jpg";
             string pathDirectory = System.AppContext.BaseDirectory;
             string path = Path.Combine(pathDirectory, @"pictures\", fileName);

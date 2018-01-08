@@ -8,7 +8,6 @@
 
 
 @using (Html.BeginForm("Edit", "Account", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
-//kan ha varit de vi glömt   "Edit", "ApplicationUser", null, FormMethod.Post, new { enctype = "multipart/form-data"}
 {
                 @Html.AntiForgeryToken()
 
@@ -57,7 +56,7 @@
             @Html.ValidationMessageFor(model => model.Hidden, "", new { @class = "text-danger" })
         </div>
     </div>
-    @Html.Label("Image", new { @class = "control-label col-md-2"})@*Test lånar ifrån johjans sista  fröreläsning  *@
+    @Html.Label("Image", new { @class = "control-label col-md-2"})
     <div class="col-md-10">
         <input type="file" name="newImg"/>
     </div>

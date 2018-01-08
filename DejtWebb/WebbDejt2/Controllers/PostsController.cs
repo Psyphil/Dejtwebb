@@ -74,9 +74,7 @@ namespace WebbDejt2.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Profile", "Account", new { username = returnTo.Email });
             }
-            return View();//test
-             // kommer till en blank index 
-            //return View(post);   funkar men komer fel
+            return View();
         }
 
         // GET: Posts/Edit/5

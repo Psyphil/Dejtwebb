@@ -59,7 +59,6 @@ namespace WebbDejt2.Controllers
         [Authorize]
         public ActionResult Profile( string username)/*string returnUrl*/
         {
-            //ViewBag.ReturnUrl = returnUrl;
            
             var user = db.Users.Single(x => x.UserName == username); 
             return View(user);
@@ -89,10 +88,7 @@ namespace WebbDejt2.Controllers
                         editUser.ImgFile = reader.ReadBytes(newImg.ContentLength);
                     }
                 }
-                //db.Entry(user).State = EntityState.Modified;
-                //db.SaveChanges();
-
-
+             
                 editUser.Email = user.Email;
                 editUser.Name = user.Name;
                 editUser.Age = user.Age;

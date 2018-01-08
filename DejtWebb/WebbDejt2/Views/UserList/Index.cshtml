@@ -4,8 +4,6 @@
     ViewBag.Title = "Index";
 }
 
-@* Html.BeginForm is used to add a form in an Html document * @@ * Pass the action name in the first parameter, controller name in the second parameter and specify the form request type as get *@
-
 <div class="col-lg-12 well">
     @using (Html.BeginForm())
     {
@@ -29,9 +27,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
-        @*<th>
-                @Html.DisplayNameFor(model => model.Hidden)
-            </th>*@
     </tr>
 
     @foreach (var item in Model)
@@ -39,7 +34,7 @@
         <tr>
             <td>
                 @Html.ActionLink(item.Name, "Profile", "Account", new { username = item.Email }, new { })
-                @*@Html.DisplayFor(modelItem => item.Name)*@
+              
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Age)
@@ -47,15 +42,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.Hidden)
-                </td>*@
-            @*<td>
-                @Html.ActionLink("Posts", "Index", "Posts", new { toid = item.Id }, new { })
-            </td>*@
-            @*<td>
-                @Html.ActionLink("Profile", "Profile", "Account", new { username = item.Email }, new { })
-            </td>*@
+           
         </tr>
     }
 

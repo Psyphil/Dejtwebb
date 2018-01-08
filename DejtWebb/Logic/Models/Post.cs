@@ -16,8 +16,5 @@ namespace WebbDejt2.Models
         public int Id { get; set; }
         public virtual ApplicationUser Author { get; set; }
         public virtual ApplicationUser Receiver { get; set; }
-
-        //public string renewDatabases { get; set; }
-
     }
 }
