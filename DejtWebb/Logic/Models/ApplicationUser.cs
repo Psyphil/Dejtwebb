@@ -25,6 +25,7 @@ namespace WebbDejt2.Models
         [StringLength(150, MinimumLength = 3)]
         public string Description { get; set; }
 
+        public int FriendRequests { get; set; }
         public bool Hidden { get; set; }
         public string ImgName { get; set; }
         public string ImgType { get; set; }
@@ -64,27 +65,7 @@ namespace WebbDejt2.Models
 
         public virtual ICollection<Friend> FriendRequestsSent { get; set; }
         public virtual ICollection<Friend> FriendRequestsReceived { get; set; }
-    }
 
-    public class Friend
-    {
-        [Key/*, Column(Order = 0)*/]
-        public string keyId { get; set; }
-        //[Key, Column(Order = 1)]
-        //public string receiverId { get; set; }
-        
-        public virtual ApplicationUser Sender { get; set; }
-        public virtual ApplicationUser Receiver { get; set; }
 
-        public bool FriendAccepted { get; set; }
-
-        public Friend(ApplicationUser From, ApplicationUser To)
-        {
-            this.FriendAccepted = false;
-            this.Sender = From;
-            this.Receiver = To;
-            this.keyId = From.Id + To.Id;
-            //this.receiverId = To.Id;
-        }
     }
 }

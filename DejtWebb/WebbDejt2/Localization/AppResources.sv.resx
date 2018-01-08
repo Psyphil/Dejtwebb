@@ -123,6 +123,9 @@
   <data name="FindUsers" xml:space="preserve">
     <value>Hitta Användare</value>
   </data>
+  <data name="Friends" xml:space="preserve">
+    <value>Vänner</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Logga in</value>
   </data>

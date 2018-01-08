@@ -123,6 +123,9 @@
   <data name="FindUsers" xml:space="preserve">
     <value>Find Users</value>
   </data>
+  <data name="Friends" xml:space="preserve">
+    <value>Friends</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
   </data>

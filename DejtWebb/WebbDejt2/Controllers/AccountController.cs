@@ -120,25 +120,6 @@ namespace WebbDejt2.Controllers
         }
 
         //
-        // SEND: FriendRequest
-        [Authorize]
-        public ActionResult SendFriendRequest(string toId)
-        {
-            var Receiver = db.Users.Find(toId);
-            var Email = User.Identity.Name;
-            var Sender = db.Users.Single(x => x.UserName == Email);
-
-            var newFriend = new Friend(Sender, Receiver);
-
-            Sender.FriendRequestsSent.Add(newFriend);
-            Receiver.FriendRequestsReceived.Add(newFriend);
-
-            return View();
-        }
-
-
-
-        //
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)

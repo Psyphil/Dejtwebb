@@ -1,0 +1,42 @@
+﻿@model IEnumerable<WebbDejt2.Models.Friend>
+
+@{
+    ViewBag.Title = AppResources.Friends;
+}
+
+<h2>@AppResources.Friends</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Sender
+        </th>
+        <th>
+            Receiver
+        </th>
+        <th>
+            Status
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sender.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Receiver.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FriendAccepted)
+        </td>
+        @if (item.Receiver.Email == User.Identity.Name && item.FriendAccepted == false)
+        {
+            <td>
+                @Html.ActionLink("Accept Friend Request", "AcceptFriendRequest", "Friends", new { id = item.keyId }, new { })
+            </td>
+        }
+    </tr>
+}
+
+</table>

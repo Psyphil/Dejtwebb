@@ -58,12 +58,16 @@
         </dd>
             <hr />
             @if (Model.Email == User.Identity.Name)
-        {
+            {
             <p class="well well-sm">
                 @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
                 @Html.ActionLink("Change Password", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
             </p>
-    }
+            }
+            else
+            {
+                @Html.ActionLink("Send Friend Request", "SendFriendRequest", "Friends", new { toId = Model.Id }, new { })
+            }
     </dl>
 </div>
     <div class="row">

@@ -1,0 +1,26 @@
+﻿@model WebbDejt2.Models.Friend
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Friend</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FriendAccepted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FriendAccepted)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.keyId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
